@@ -8,11 +8,11 @@ terraform {
 }
 
 provider "google" {
-  credentials = file("../creds/learning-spinnaker-323810-41d7d654aec5.json")
+  credentials = file(var.credentials_file)
 
-  project = "learning-spinnaker-323810"
-  region  = "us-central1"
-  zone    = "us-central1-c"
+  project = var.project
+  region  = var.region
+  zone    = var.zone
 }
 
 resource "google_compute_network" "vpc_network" {
@@ -36,3 +36,8 @@ resource "google_compute_instance" "vm_instance" {
     }
   }
 }
+
+output "ip" {
+  value = google_compute_instance.vm_instance.network_interface.0.network_ip
+}
+
