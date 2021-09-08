@@ -5,6 +5,6 @@ steps:
   args:
   - '-c'
   - |
-      cd ./Terraform
+      cd ./network
       terraform init
       terraform plan
